@@ -38,7 +38,7 @@ const signup = dispatch => async ({ email, password }) => {
         await AsyncStorage.setItem('token', response.data.token)
         dispatch({ type: 'signin', payload: response.data.token })
 
-        // console.log(response.data)
+        console.log(response.data)
         navigate('TrackList')
     } catch (err) {
         dispatch({ type: 'add_error', payload: 'Something went wrong with signing up!' })
@@ -46,13 +46,13 @@ const signup = dispatch => async ({ email, password }) => {
     }
 }
 
-const signin = (dispatch) => async ({ email, password }) => {
+const signin = dispatch => async ({ email, password }) => {
     // Try to signin 
     // Handle success by updating state
     // Handle failure by showing error message 
 
     try {
-        const response = await trackerApi.post('/sigin', { email, password })
+        const response = await trackerApi.post('/signin', { email, password })
         await AsyncStorage.setItem('token', response.data.token)
         dispatch({ type: 'signin', payload: response.data.token })
         navigate('TrackList')
